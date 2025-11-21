@@ -1,0 +1,11 @@
+C:\Users\User\Documents\Tagayom Files\programming\c#\Orion\bin\Debug\Orion.dll
+C:\Users\User\Documents\Tagayom Files\programming\c#\Orion\bin\Debug\Orion.pdb
+C:\Users\User\Documents\Tagayom Files\programming\c#\Orion\obj\Debug\Orion.csproj.AssemblyReference.cache
+C:\Users\User\Documents\Tagayom Files\programming\c#\Orion\obj\Debug\Orion.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\Tagayom Files\programming\c#\Orion\obj\Debug\Orion.dll
+C:\Users\User\Documents\Tagayom Files\programming\c#\Orion\obj\Debug\Orion.pdb
+C:\Users\User\Documents\Tagayom Files\programming\c#\Orion\obj\Debug\Views\SectionMenu.g.cs
+C:\Users\User\Documents\Tagayom Files\programming\c#\Orion\obj\Debug\Orion_MarkupCompile.cache
+C:\Users\User\Documents\Tagayom Files\programming\c#\Orion\obj\Debug\Orion_MarkupCompile.lref
+C:\Users\User\Documents\Tagayom Files\programming\c#\Orion\obj\Debug\Views\SectionMenu.baml
+C:\Users\User\Documents\Tagayom Files\programming\c#\Orion\obj\Debug\Orion.g.resources

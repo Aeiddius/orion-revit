@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+	<AddIn Type="Application">
+		<Name>Orion</Name>
+		<FullClassName>Orion.App</FullClassName>
+		<Text>Orion App</Text>
+		<Description>A Tool box for MEP BIM teams</Description>
+		<VisibilityMode>AlwaysVisible</VisibilityMode>
+		<Assembly>C:\Users\User\Documents\Tagayom Files\programming\c#\Orion\bin\Debug\Orion.dll</Assembly>
+		<AddInId>B4D308C6-0DBC-4163-93F4-2E1FA0EEDBB5</AddInId>
+		<VendorId>ON</VendorId>
+		<VendorDescription>Autodesk, Inc, www.autodesk.com</VendorDescription>
+	</AddIn>
+</RevitAddIns>
