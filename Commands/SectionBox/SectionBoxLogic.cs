@@ -15,6 +15,8 @@ namespace Orion.Commands.SectionBox
 {
     public static class SectionBoxLogic
     {
+        private static ElementId _setTemplateViewId;
+        private static bool _viewHandlerFired;
 
         public static Result AdjustSize(Document doc, XYZ offset, string commandName)
         {
@@ -108,7 +110,13 @@ namespace Orion.Commands.SectionBox
             }
         }
 
-        public static Result SetSection(UIDocument uidoc, bool viewHandlerFired, string commandName, string mode, double? specifiedSize = null)
+        public static Result SetSection(
+            UIDocument uidoc,
+            string commandName,
+            string mode,
+            ElementId targetView = null,
+            ElementId templateView = null,
+            double? specifiedSize = null)
         {
 
             Document doc = uidoc.Document;
@@ -123,7 +131,11 @@ namespace Orion.Commands.SectionBox
             BoundingBoxXYZ bbox = SectionBoxLogic.NewBoundingBox(doc, sel);
             if (bbox == null) return Result.Cancelled;
 
-            // will default to element if specified.value is null
+            // For view template
+            if (templateView != null) _setTemplateViewId = templateView;
+
+
+            // Set bbox offset/size. Will default to element if specified value is null
             if (specifiedSize.HasValue)
             {
                 if (string.Equals(mode, "specific", StringComparison.OrdinalIgnoreCase))
@@ -139,25 +151,40 @@ namespace Orion.Commands.SectionBox
                 }
             }
 
-            // Check if the default 3D view is already opened
-            IEnumerable<View3D> view3ds = new FilteredElementCollector(doc)
-                .OfClass(typeof(View3D))
-                .Cast<View3D>();
-
-            View3D default3D = view3ds.FirstOrDefault(v => v.Name.Contains($"3D - {doc.Application.Username}") || v.Name.Contains("{3D}"));
-            if (default3D != null)
+            // Find view3d to open
+            View3D default3D;
+            if (targetView == null)
             {
-                bool isOpen = uidoc.GetOpenUIViews().Any(uiv => uiv.ViewId == default3D.Id);
-                Open3DView(uidoc, default3D, bbox, commandName);
-                return Result.Succeeded;
+                default3D = new FilteredElementCollector(doc)
+                    .OfClass(typeof(View3D))
+                    .Cast<View3D>()
+                    .FirstOrDefault(v => v.Name.Contains($"3D - {doc.Application.Username}") || v.Name.Contains("{3D}"));
+            } else
+            {
+                default3D = doc.GetElement(targetView) as View3D;
             }
 
+            // Open found view3d or generate new one
+            if (default3D != null)
+            {
+                Open3DView(uidoc, default3D, bbox, commandName);
+                return Result.Succeeded;
+            } else
+            {
+                uiapp.ViewActivated += handler;
+
+                // Open Default 3D View
+                RevitCommandId cmdId = RevitCommandId.LookupPostableCommandId(PostableCommand.Default3DView);
+                uiapp.PostCommand(cmdId);
+
+                return Result.Succeeded;
+            }
 
             // Open Default 3D View and wait for it to be activated
             void handler(object sender, ViewActivatedEventArgs args)
             {
-                if (viewHandlerFired) return;
-                viewHandlerFired = true;
+                if (_viewHandlerFired) return;
+                _viewHandlerFired = true;
                 void _run()
                 {
                     try
@@ -194,28 +221,28 @@ namespace Orion.Commands.SectionBox
                 _run();
                 // Unsubscribe from the event after it has been handled
                 uiapp.ViewActivated -= handler;
-                viewHandlerFired = false;
+                _viewHandlerFired = false;
             }
-
-            uiapp.ViewActivated += handler;
-
-            // Open Default 3D View
-            RevitCommandId cmdId = RevitCommandId.LookupPostableCommandId(PostableCommand.Default3DView);
-            uiapp.PostCommand(cmdId);
-
-            return Result.Succeeded;
         }
+        
+        public static bool isViewValid3d(Document doc, View view)
+        {
+            if (doc.ActiveView.ViewType != ViewType.ThreeD) return false;
 
+            return true;
+        }
 
         private static Result Open3DView(UIDocument uidoc, View3D view3d, BoundingBoxXYZ bbox, string commandName)
         {
             Document doc = uidoc.Document;
+
 
             // ViewNavigationToolSettings nav = ViewNavigationToolSettings.GetViewNavigationToolSettings(doc);
             // Set the BBox
             using (Transaction tx = new Transaction(doc, commandName))
             {
                 tx.Start();
+                if (_setTemplateViewId != null) view3d.ViewTemplateId = _setTemplateViewId;
                 view3d.SetSectionBox(bbox);
                 // targetView3D.SetOrientation(nav.GetHomeCamera());
                 tx.Commit();
@@ -250,7 +277,6 @@ namespace Orion.Commands.SectionBox
 
             return Result.Succeeded;
         }
-
 
         private static BoundingBoxXYZ NewBoundingBox(Document doc, ICollection<ElementId> sel)
         {
@@ -344,6 +370,7 @@ namespace Orion.Commands.SectionBox
         }
 
 
+        
 
     }
 }

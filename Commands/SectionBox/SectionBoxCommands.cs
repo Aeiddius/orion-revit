@@ -27,7 +27,6 @@ namespace Orion.Commands.SectionBox
     internal class SetSectionBoxCommand : IExternalCommand
     {
         private const string CommandName = "Set Section Box";
-        private bool viewHandlerFired = false;
 
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
@@ -35,7 +34,14 @@ namespace Orion.Commands.SectionBox
 
 
             // Get 3D View
-            SectionBoxLogic.SetSection(uidoc, viewHandlerFired, CommandName, "elements");
+            SectionBoxLogic.SetSection(
+                uidoc,
+                CommandName,
+                "elements",
+                null,
+                null,
+                null
+            );
 
             return Result.Succeeded;
         }

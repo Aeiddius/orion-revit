@@ -29,14 +29,22 @@ namespace Orion.Commands.SectionBox
     public class SetSectionBoxHandler : IExternalEventHandler
     {
         public const string CommandName = "Set Section Box";
-        private bool ViewHandlerFired = false;
         public double? Size { get; set; }
+        public ElementId TargetView { get; set; }
+        public ElementId TemplateView { get; set; }
         public string Mode {  get; set; }
         public void Execute(UIApplication app)
         {
             UIDocument uidoc = app.ActiveUIDocument;
 
-            SectionBoxLogic.SetSection(uidoc, ViewHandlerFired, CommandName, Mode, Size);
+            SectionBoxLogic.SetSection(
+                uidoc,
+                CommandName,
+                Mode,
+                TargetView,
+                TemplateView,
+                Size
+            );
 
         }
 

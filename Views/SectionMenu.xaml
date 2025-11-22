@@ -62,7 +62,7 @@
                 <Button x:Name="ShrinkYButton" Height="{StaticResource ButtonHeight}" Grid.Column="2" Grid.Row="1" Content="Y-" Cursor="Hand" Click="ShrinkYSectionBoxCommand"/>
                 <Button x:Name="ShrinkXButton" Height="{StaticResource ButtonHeight}" Grid.Column="3" Grid.Row="1" Content="X-" Cursor="Hand" Click="ShrinkXSectionBoxCommand"/>
                 <Button x:Name="ShrinkZButton" Height="{StaticResource ButtonHeight}" Grid.Column="4" Grid.Row="1" Content="Z-" Cursor="Hand" Click="ShrinkZSectionBoxCommand"/>
-                <Label Grid.Column="5" Grid.Row="0" Content="Step:"/>
+                <Label x:Name="StepLabel" Grid.Column="5" Grid.Row="0" Content="Step: (Feet)"/>
                 <TextBox x:Name="StepInput" Grid.Column="5" Grid.Row="1" Margin="3, 3, 0, 0" Text="1'-0&quot;" />
             </Grid>
 
@@ -81,13 +81,13 @@
                 
                 <!-- Row 1 -->
                 <Label Content="View:" Grid.Column="0" Grid.Row="0"/>
-                <ComboBox x:Name="Combobox3DViews" Height="18" Grid.Column="1" Grid.Row="0" DisplayMemberPath="Name" SelectedValuePath="Id" />
+                <ComboBox x:Name="Combobox3DViews" Height="20" Grid.Column="1" Grid.Row="0" DisplayMemberPath="Name" SelectedValuePath="Id" />
                 
                 <!-- Row 2 -->
                 <Label Content="Size:" Grid.Column="0" Grid.Row="1"/>
                 <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" >
-                    <ComboBox x:Name="ComboboxSizeMethod" Height="18" Width="130" SelectedIndex="1">
-                        <ComboBoxItem Content="Specific Size"  Tag="specific"/>
+                    <ComboBox x:Name="ComboboxSizeMethod" Height="20" Width="200" SelectedIndex="1">
+                        <ComboBoxItem Content="Specific Box Size"  Tag="specific"/>
                         <ComboBoxItem Content="Elements + Offset" Tag="elements"/>
                     </ComboBox>
 
@@ -97,21 +97,22 @@
 
 
                 <!-- Row 3 -->
-                <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
+                <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" >
                     <Label Content="Template:" Grid.Column="0" Grid.Row="2"/>
-                    <ComboBox x:Name="ComboboxTemplate" Height="18" Width="170" Grid.Column="1" Grid.Row="0"  DisplayMemberPath="Name" SelectedValuePath="Id">
+                    <ComboBox x:Name="ComboboxTemplate" Height="20" Width="240" Grid.Column="1" Grid.Row="0"  DisplayMemberPath="Name" SelectedValuePath="Id">
                     </ComboBox>
                 </StackPanel>
 
                 <!-- Row 4 -->
-                <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2">
+                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2">
+                    <!--
                     <Label Content="Open Windows Side by Side: "/>
                     <CheckBox x:Name="OpenSidebySideCheck" Margin="-5,3,0,0">
                         <CheckBox.LayoutTransform>
                             <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
                         </CheckBox.LayoutTransform>
-                    </CheckBox>
-                    <Button x:Name="ButtonClose" Width="45" Content="Close" HorizontalAlignment="Right" Background="#383838" Foreground="white"/>
+                    </CheckBox> -->
+                    <Button x:Name="ButtonClose" Margin="0,0,0,0" Width="50" Content="Close" Cursor="Hand" HorizontalAlignment="Right" Background="#383838" Foreground="white" Click="CloseMenu"/>
 
                 </StackPanel>
 

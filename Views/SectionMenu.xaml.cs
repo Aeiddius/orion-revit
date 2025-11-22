@@ -51,47 +51,57 @@ namespace Orion.Views
             _toggleHandler = new ToggleSectionBoxHandler();
             _toggleEvent = ExternalEvent.Create(_toggleHandler);
 
-            var renderImages = new FilteredElementCollector(doc)
-                .OfClass(typeof(ImageType))
-                .Cast<ImageType>()
-                .ToList();
 
-            HashSet<ElementId> viewsWithRenders = renderImages
-                .Where(img => img.OwnerViewId != ElementId.InvalidElementId)
-                .Select(img => img.OwnerViewId)
-                .ToHashSet();
+            Setup(doc);
 
-            // Set the Views Combobox
-            List<ComboItem> views = new FilteredElementCollector(doc)
+
+        }
+
+        private void Setup(Document doc)
+        {
+            IEnumerable<View3D> view3ds = new FilteredElementCollector(doc)
                 .OfClass(typeof(View3D))
-                .Cast<View3D>()
-                .Where(v => !v.IsTemplate && !v.IsLocked && !viewsWithRenders.Contains(v.Id))
+                .Cast<View3D>();
+
+            // Set the 3D Views Combobox
+            List<ComboItem> combobox3DViewItems = view3ds
+                .Where(v => !v.IsTemplate)
                 .Select(v => new ComboItem { Id = v.Id, Name = v.Name })
                 .ToList();
 
-            Combobox3DViews.ItemsSource = views;
 
-            ComboItem default3D = views.FirstOrDefault(v => v.Name.Contains($"3D - {doc.Application.Username}") || v.Name.Contains("{3D}"));
-            if (default3D != null) Combobox3DViews.SelectedValue = default3D.Id;
-            else if (views.Count > 0) Combobox3DViews.SelectedIndex = 0;
-            else Combobox3DViews.SelectedIndex = -1;
+            ComboItem default3D = new ComboItem { Name = "{Default 3D}", Id = new ElementId(0) };
+            foreach (ComboItem comboItem in combobox3DViewItems)
+            {
+                if (comboItem.Name.Contains($"3D - {doc.Application.Username}") || comboItem.Name.Contains("{3D}"))
+                {
+                    default3D = comboItem;
+                    combobox3DViewItems.Remove(comboItem);
+                    combobox3DViewItems.Insert(0, default3D);
+                    break;
+                }
+            }
+            if (default3D.Name == "{Default 3D}") combobox3DViewItems.Insert(0, default3D);
+            Combobox3DViews.ItemsSource = combobox3DViewItems;
+            Combobox3DViews.SelectedIndex = 0;
 
 
             // Set the View Template Combobox
-            List<ComboItem> viewTemplates = new FilteredElementCollector(doc)
-                .OfClass(typeof(View3D))
-                .Cast<View3D>()
+            List<ComboItem> viewTemplates = view3ds
                 .Where(v => v.IsTemplate && !string.IsNullOrWhiteSpace(v.Name))
                 .Select(v => new ComboItem { Id = v.Id, Name = v.Name })
                 .ToList();
 
-            ComboboxTemplate.ItemsSource = views;
+            viewTemplates.Insert(0, new ComboItem { Name = "{No Template}", Id = new ElementId(0) });
 
-            if (views.Count > 0) ComboboxTemplate.SelectedIndex = 0;
-            else ComboboxTemplate.SelectedIndex = -1;
+            ComboboxTemplate.ItemsSource = viewTemplates;
+            ComboboxTemplate.SelectedIndex = 0;
 
+            //Unit
             // Default Step
             SetDefaultStep();
+            string unit = GetLengthUnitString(doc);
+            StepLabel.Content = $"Step: ({unit})";
         }
 
         private class ComboItem
@@ -203,8 +213,42 @@ namespace Orion.Views
                 { UnitTypeId.FractionalInches, "12\"" },
             };
             StepInput.Text = map.TryGetValue(displayUnitId, out var v) ? v : "1";
-
         }
+
+
+        public static string GetLengthUnitString(Document doc)
+        {
+            // Get the ForgeTypeId used for length in this document
+            FormatOptions fmt = doc.GetUnits().GetFormatOptions(SpecTypeId.Length);
+            ForgeTypeId displayUnitId = fmt.GetUnitTypeId();
+
+            var unitMap = new Dictionary<ForgeTypeId, string>
+                {
+                    { UnitTypeId.Millimeters, "mm" },
+                    { UnitTypeId.Centimeters, "cm" },
+                    { UnitTypeId.Meters,      "m"  },
+                    //{ UnitTypeId.DecimalInches,        "in" },      // decimal inches
+                    { UnitTypeId.Inches,               "in" },      // sometimes used
+                    { UnitTypeId.FractionalInches,     "in" },
+                    { UnitTypeId.Feet,                 "ft" },
+                    { UnitTypeId.FeetFractionalInches, "ft-in" },   // feet & fractional inches
+                    //{ UnitTypeId.FeetAndInches,        "ft-in" },   // alternate naming if present
+                };
+
+            // Try direct dictionary lookup first (fast)
+            if (unitMap.TryGetValue(displayUnitId, out string unitKey))
+                return unitKey;
+
+            // Sometimes ForgeTypeId instances may differ; do a fallback by matching by Id string
+            // This is defensive — usually TryGetValue above is enough.
+            var match = unitMap.FirstOrDefault(kvp => kvp.Key.Equals(displayUnitId));
+            if (!match.Equals(default(KeyValuePair<ForgeTypeId, string>)))
+                return match.Value;
+
+            // Last fallback: return a readable identifier (useful for debugging or obscure units)
+            return displayUnitId?.ToString() ?? "idk";
+        }
+
 
         private double ParseInput(string stringInput)
         {
@@ -226,19 +270,28 @@ namespace Orion.Views
         private void SetSectionBoxCommand(object sender, RoutedEventArgs e)
         {
             string txt = SetSizeBox.Text?.Trim();
-
             string mode = (ComboboxSizeMethod.SelectedItem as ComboBoxItem)?.Tag as string; // "specific" or "elements"
-            _setHandler.Mode = mode;
-            _setHandler.Size = string.IsNullOrWhiteSpace(txt)
-                ? (double?)null
-                : ParseInput(txt);   // assumes ParseInput returns internal-units double and throws on invalid
+            ElementId selectedViewId = (Combobox3DViews.SelectedItem as ComboItem).Id as ElementId;
+            ElementId templateViewId = (ComboboxTemplate.SelectedItem as ComboItem).Id as ElementId;
 
+            _setHandler.Mode = mode;
+            _setHandler.TargetView = selectedViewId.IntegerValue != 0 ? selectedViewId : null;
+            _setHandler.TemplateView = templateViewId.IntegerValue != 0 ? templateViewId : null;
+            _setHandler.Size = string.IsNullOrWhiteSpace(txt) ? (double?)null : ParseInput(txt);
             _setEvent.Raise();
         }
 
         private void ToggleSectionBoxCommand(object sender, RoutedEventArgs e)
         {
             _toggleEvent.Raise();
+        }
+
+        private void CloseMenu(object sender, RoutedEventArgs e)
+        {
+            _instanceRef = null;
+
+            // close the window
+            this.Close();
         }
     }
 }
