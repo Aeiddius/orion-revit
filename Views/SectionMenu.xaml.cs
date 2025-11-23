@@ -206,11 +206,18 @@ namespace Orion.Views
             {
                 { UnitTypeId.Millimeters, "1000" },
                 { UnitTypeId.Centimeters, "100"  },
+                { UnitTypeId.Decimeters, "10" },
                 { UnitTypeId.Meters,      "1"    },
+                { UnitTypeId.StationingMeters,  "1" },
+                { UnitTypeId.MetersCentimeters, "1" },
+
                 { UnitTypeId.Feet, "1'-0\"" },
                 { UnitTypeId.FeetFractionalInches, "1'-0\"" },
                 { UnitTypeId.Inches, "12\"" },
                 { UnitTypeId.FractionalInches, "12\"" },
+                { UnitTypeId.StationingFeet,  "1'" },
+                { UnitTypeId.StationingSurveyFeet,  "1'" },
+                { UnitTypeId.UsSurveyFeet,  "1'" },
             };
             StepInput.Text = map.TryGetValue(displayUnitId, out var v) ? v : "1";
         }
@@ -225,14 +232,20 @@ namespace Orion.Views
             var unitMap = new Dictionary<ForgeTypeId, string>
                 {
                     { UnitTypeId.Millimeters, "mm" },
+                    { UnitTypeId.Decimeters, "dm" },
                     { UnitTypeId.Centimeters, "cm" },
                     { UnitTypeId.Meters,      "m"  },
-                    //{ UnitTypeId.DecimalInches,        "in" },      // decimal inches
-                    { UnitTypeId.Inches,               "in" },      // sometimes used
+                    { UnitTypeId.MetersCentimeters, "m-cm" },
+                    { UnitTypeId.StationingMeters,  "S.m" }, 
+
+                    { UnitTypeId.Inches,               "in" },
                     { UnitTypeId.FractionalInches,     "in" },
                     { UnitTypeId.Feet,                 "ft" },
-                    { UnitTypeId.FeetFractionalInches, "ft-in" },   // feet & fractional inches
-                    //{ UnitTypeId.FeetAndInches,        "ft-in" },   // alternate naming if present
+                    { UnitTypeId.FeetFractionalInches, "ft-in" }, 
+                    { UnitTypeId.StationingFeet,  "S. ft" },
+                    { UnitTypeId.StationingSurveyFeet,  "S. Sft" },
+                    { UnitTypeId.UsSurveyFeet,  "USft'" },
+
                 };
 
             // Try direct dictionary lookup first (fast)

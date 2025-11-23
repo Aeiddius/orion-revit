@@ -67,27 +67,26 @@
     <None Include="Orion.addin" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resource\SectionBox\MenuSectionBox-16x16.ico" />
-    <EmbeddedResource Include="Resource\SectionBox\MenuSectionBox-32x32.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resource\SectionBox\GrowSectionIcon-16x16.ico" />
-    <EmbeddedResource Include="Resource\SectionBox\GrowSectionIcon-32x32.ico" />
-    <EmbeddedResource Include="Resource\SectionBox\SetSectionIcon-16x16.ico" />
-    <EmbeddedResource Include="Resource\SectionBox\SetSectionIcon-32x32.ico" />
-    <EmbeddedResource Include="Resource\SectionBox\ShrinkSectionIcon-16x16.ico" />
-    <EmbeddedResource Include="Resource\SectionBox\ShrinkSectionIcon-32x32.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resource\SectionBox\ToggleSectionBox-16x16.ico" />
-    <EmbeddedResource Include="Resource\SectionBox\ToggleSectionBox-32x32.ico" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
     <Page Include="Views\SectionMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resource\SectionBox\GrowSectionIcon-16x16.ico" />
+    <EmbeddedResource Include="Resource\SectionBox\GrowSectionIcon-32x32.ico" />
+    <EmbeddedResource Include="Resource\SectionBox\MenuSectionBox-16x16.ico" />
+    <EmbeddedResource Include="Resource\SectionBox\MenuSectionBox-32x32.ico" />
+    <EmbeddedResource Include="Resource\SectionBox\SetSectionIcon-16x16.ico" />
+    <EmbeddedResource Include="Resource\SectionBox\SetSectionIcon-32x32.ico" />
+    <EmbeddedResource Include="Resource\SectionBox\ShrinkSectionIcon-16x16.ico" />
+    <EmbeddedResource Include="Resource\SectionBox\ShrinkSectionIcon-32x32.ico" />
+    <EmbeddedResource Include="Resource\SectionBox\ToggleSectionBox-16x16.ico" />
+    <EmbeddedResource Include="Resource\SectionBox\ToggleSectionBox-32x32.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resource\SectionBox\FilterPlusIcon-16x16.ico" />
+    <EmbeddedResource Include="Resource\SectionBox\FilterPlusIcon-32x32.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

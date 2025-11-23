@@ -25,7 +25,8 @@ namespace Orion
                 // Tab
                 application.CreateRibbonTab(tabName);
 
-                RibbonPanel panel = application.CreateRibbonPanel(tabName, "Section Panel");
+                // Section Panel
+                RibbonPanel sectionPanel = application.CreateRibbonPanel(tabName, "Section Panel");
                 SplitButtonData sbd = new SplitButtonData("OrionSectionBoxSplitButton", "Section Box Tools");
 
                 ButtonSpec buttonSetSB = new ButtonSpec(
@@ -74,8 +75,21 @@ namespace Orion
                 );
 
 
-                CreatePushButton(panel, new[] { buttonMenuSB, buttonSetSB });
-                CreateStackedButtons(panel, new[] { buttonToggleSB, buttonGrowSB, buttonShrinkSB,  });
+                CreatePushButton(sectionPanel, new[] { buttonMenuSB, buttonSetSB });
+                CreateStackedButtons(sectionPanel, new[] { buttonToggleSB, buttonGrowSB, buttonShrinkSB,  });
+
+                // Filter
+                RibbonPanel filterPanel = application.CreateRibbonPanel(tabName, "Filter Panel");
+                ButtonSpec buttonFilter = new ButtonSpec(
+                    id: "cmdFilterAdvanced",
+                    title: "Filter+",
+                    className: "Orion.Commands.SectionBox.SetSectionBoxCommand",
+                    icon16: "Orion.Resource.SectionBox.FilterPlusIcon-16x16.ico",
+                    icon32: "Orion.Resource.SectionBox.FilterPlusIcon-32x32.ico",
+                    tooltip: "Advanced Filter mode"
+                );
+
+                CreatePushButton(filterPanel, new[] { buttonFilter });
 
                 return Result.Succeeded;
             }
