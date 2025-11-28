@@ -1,25 +1,33 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Programming\\revit-extension\\orion-revit\\",
+  "WorkspaceRootPath": "C:\\Users\\User\\Documents\\Tagayom Files\\programming\\c#\\Orion\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{941E2691-ADC7-4564-9BFE-606BD3092578}|Orion.csproj|c:\\programming\\revit-extension\\orion-revit\\app.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{941E2691-ADC7-4564-9BFE-606BD3092578}|Orion.csproj|c:\\users\\user\\documents\\tagayom files\\programming\\c#\\orion\\commands\\filterplus\\filterpluscommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{941E2691-ADC7-4564-9BFE-606BD3092578}|Orion.csproj|solutionrelative:commands\\filterplus\\filterpluscommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{941E2691-ADC7-4564-9BFE-606BD3092578}|Orion.csproj|C:\\Users\\User\\Documents\\Tagayom Files\\programming\\c#\\Orion\\app.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{941E2691-ADC7-4564-9BFE-606BD3092578}|Orion.csproj|solutionrelative:app.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{941E2691-ADC7-4564-9BFE-606BD3092578}|Orion.csproj|C:\\Programming\\revit-extension\\orion-revit\\views\\sectionmenu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{941E2691-ADC7-4564-9BFE-606BD3092578}|Orion.csproj|c:\\users\\user\\documents\\tagayom files\\programming\\c#\\orion\\views\\sectionmenu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{941E2691-ADC7-4564-9BFE-606BD3092578}|Orion.csproj|solutionrelative:views\\sectionmenu.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{941E2691-ADC7-4564-9BFE-606BD3092578}|Orion.csproj|c:\\programming\\revit-extension\\orion-revit\\commands\\sectionbox\\sectionboxhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{941E2691-ADC7-4564-9BFE-606BD3092578}|Orion.csproj|C:\\Users\\User\\Documents\\Tagayom Files\\programming\\c#\\Orion\\views\\filterplus.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{941E2691-ADC7-4564-9BFE-606BD3092578}|Orion.csproj|solutionrelative:views\\filterplus.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{941E2691-ADC7-4564-9BFE-606BD3092578}|Orion.csproj|C:\\Users\\User\\Documents\\Tagayom Files\\programming\\c#\\Orion\\commands\\sectionbox\\sectionboxhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{941E2691-ADC7-4564-9BFE-606BD3092578}|Orion.csproj|solutionrelative:commands\\sectionbox\\sectionboxhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{941E2691-ADC7-4564-9BFE-606BD3092578}|Orion.csproj|C:\\Programming\\revit-extension\\orion-revit\\commands\\sectionbox\\sectionboxstorage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{941E2691-ADC7-4564-9BFE-606BD3092578}|Orion.csproj|solutionrelative:commands\\sectionbox\\sectionboxstorage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{941E2691-ADC7-4564-9BFE-606BD3092578}|Orion.csproj|C:\\Users\\User\\Documents\\Tagayom Files\\programming\\c#\\Orion\\views\\filterplus.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{941E2691-ADC7-4564-9BFE-606BD3092578}|Orion.csproj|solutionrelative:views\\filterplus.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{941E2691-ADC7-4564-9BFE-606BD3092578}|Orion.csproj|C:\\Programming\\revit-extension\\orion-revit\\orion.addin||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "AbsoluteMoniker": "D:0:0:{941E2691-ADC7-4564-9BFE-606BD3092578}|Orion.csproj|c:\\users\\user\\documents\\tagayom files\\programming\\c#\\orion\\orion.addin||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
       "RelativeMoniker": "D:0:0:{941E2691-ADC7-4564-9BFE-606BD3092578}|Orion.csproj|solutionrelative:orion.addin||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     }
   ],
@@ -29,43 +37,67 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 963,
-          "SelectedChildIndex": 1,
+          "DockedWidth": 1397,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "SectionMenu.xaml.cs",
-              "DocumentMoniker": "C:\\Programming\\revit-extension\\orion-revit\\Views\\SectionMenu.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\Tagayom Files\\programming\\c#\\Orion\\Views\\SectionMenu.xaml.cs",
               "RelativeDocumentMoniker": "Views\\SectionMenu.xaml.cs",
-              "ToolTip": "C:\\Programming\\revit-extension\\orion-revit\\Views\\SectionMenu.xaml.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\Tagayom Files\\programming\\c#\\Orion\\Views\\SectionMenu.xaml.cs",
               "RelativeToolTip": "Views\\SectionMenu.xaml.cs",
-              "ViewState": "AgIAAMoAAAAAAAAAAAAAANYAAAA2AAAAAAAAAA==",
+              "ViewState": "AgIAACMAAAAAAAAAAAAwwCgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-20T08:47:37.423Z",
-              "IsPinned": true,
+              "WhenOpened": "2025-11-28T08:36:49.208Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
+              "Title": "FilterPlus.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\Tagayom Files\\programming\\c#\\Orion\\Views\\FilterPlus.xaml.cs",
+              "RelativeDocumentMoniker": "Views\\FilterPlus.xaml.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\Tagayom Files\\programming\\c#\\Orion\\Views\\FilterPlus.xaml.cs",
+              "RelativeToolTip": "Views\\FilterPlus.xaml.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAowB0AAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-27T00:41:30.408Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "FilterPlus.xaml",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\Tagayom Files\\programming\\c#\\Orion\\Views\\FilterPlus.xaml",
+              "RelativeDocumentMoniker": "Views\\FilterPlus.xaml",
+              "ToolTip": "C:\\Users\\User\\Documents\\Tagayom Files\\programming\\c#\\Orion\\Views\\FilterPlus.xaml",
+              "RelativeToolTip": "Views\\FilterPlus.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-11-25T07:40:42.825Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "App.cs",
-              "DocumentMoniker": "C:\\Programming\\revit-extension\\orion-revit\\App.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\Tagayom Files\\programming\\c#\\Orion\\App.cs",
               "RelativeDocumentMoniker": "App.cs",
-              "ToolTip": "C:\\Programming\\revit-extension\\orion-revit\\App.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\Tagayom Files\\programming\\c#\\Orion\\App.cs",
               "RelativeToolTip": "App.cs",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAQwE0AAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAADkAAAAAAAAAAAAQwFUAAABLAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-22T16:03:46.988Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "SectionBoxHandler.cs",
-              "DocumentMoniker": "C:\\Programming\\revit-extension\\orion-revit\\Commands\\SectionBox\\SectionBoxHandler.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\Tagayom Files\\programming\\c#\\Orion\\Commands\\SectionBox\\SectionBoxHandler.cs",
               "RelativeDocumentMoniker": "Commands\\SectionBox\\SectionBoxHandler.cs",
-              "ToolTip": "C:\\Programming\\revit-extension\\orion-revit\\Commands\\SectionBox\\SectionBoxHandler.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\Tagayom Files\\programming\\c#\\Orion\\Commands\\SectionBox\\SectionBoxHandler.cs",
               "RelativeToolTip": "Commands\\SectionBox\\SectionBoxHandler.cs",
               "ViewState": "AgIAADMAAAAAAAAAAAAAADcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -74,27 +106,35 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SectionBoxStorage.cs",
-              "DocumentMoniker": "C:\\Programming\\revit-extension\\orion-revit\\Commands\\SectionBox\\SectionBoxStorage.cs",
-              "RelativeDocumentMoniker": "Commands\\SectionBox\\SectionBoxStorage.cs",
-              "ToolTip": "C:\\Programming\\revit-extension\\orion-revit\\Commands\\SectionBox\\SectionBoxStorage.cs",
-              "RelativeToolTip": "Commands\\SectionBox\\SectionBoxStorage.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAAwBYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-22T13:32:46.59Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "Orion.addin",
-              "DocumentMoniker": "C:\\Programming\\revit-extension\\orion-revit\\Orion.addin",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\Tagayom Files\\programming\\c#\\Orion\\Orion.addin",
               "RelativeDocumentMoniker": "Orion.addin",
-              "ToolTip": "C:\\Programming\\revit-extension\\orion-revit\\Orion.addin",
+              "ToolTip": "C:\\Users\\User\\Documents\\Tagayom Files\\programming\\c#\\Orion\\Orion.addin",
               "RelativeToolTip": "Orion.addin",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000072|",
-              "WhenOpened": "2025-11-22T01:57:25.159Z"
+              "WhenOpened": "2025-11-22T01:57:25.159Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 1397,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FilterPlusCommand.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Documents\\Tagayom Files\\programming\\c#\\Orion\\Commands\\FilterPlus\\FilterPlusCommand.cs",
+              "RelativeDocumentMoniker": "Commands\\FilterPlus\\FilterPlusCommand.cs",
+              "ToolTip": "C:\\Users\\User\\Documents\\Tagayom Files\\programming\\c#\\Orion\\Commands\\FilterPlus\\FilterPlusCommand.cs",
+              "RelativeToolTip": "Commands\\FilterPlus\\FilterPlusCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-28T08:35:45.989Z",
+              "EditorCaption": ""
             }
           ]
         }

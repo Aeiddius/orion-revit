@@ -83,7 +83,7 @@ namespace Orion
                 ButtonSpec buttonFilter = new ButtonSpec(
                     id: "cmdFilterAdvanced",
                     title: "Filter+",
-                    className: "Orion.Commands.SectionBox.SetSectionBoxCommand",
+                    className: "Orion.Commands.FilterPlus.FilterPlusCommand",
                     icon16: "Orion.Resource.SectionBox.FilterPlusIcon-16x16.ico",
                     icon32: "Orion.Resource.SectionBox.FilterPlusIcon-32x32.ico",
                     tooltip: "Advanced Filter mode"

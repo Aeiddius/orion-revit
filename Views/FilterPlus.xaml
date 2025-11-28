@@ -1,0 +1,102 @@
+﻿<Window x:Class="Orion.Views.FilterPlus"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:Orion"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Height="auto"
+        ResizeMode="NoResize"
+        Width="300"
+        SizeToContent="WidthAndHeight"
+        Title="Filter Plus"
+        >
+
+    <Border Padding="10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Filter" Grid.Row="0" />
+            <ScrollViewer Grid.Row="1" Grid.Column="0"
+                VerticalScrollBarVisibility="Auto"
+                HorizontalScrollBarVisibility="Disabled"
+                Padding="6">
+                <StackPanel>
+                    <TreeView x:Name="FilterTree">
+                        <!-- root n     ode -->
+                        <TreeViewItem IsExpanded="True">
+                            <TreeViewItem.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <CheckBox IsThreeState="True" Tag="root" IsChecked="True"/>
+                                    <TextBlock Text="All Layers" Margin="6,0,0,0" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </TreeViewItem.Header>
+
+                            <!-- child node -->
+                            <TreeViewItem>
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox Tag="layer_a" IsThreeState="True" />
+                                        <TextBlock Text="Layer A" Margin="6,0,0,0" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+
+                                <!-- grand children -->
+                                <TreeViewItem>
+                                    <TreeViewItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <CheckBox Tag="layer_a_1" />
+                                            <TextBlock Text="A.1" Margin="6,0,0,0"/>
+                                        </StackPanel>
+                                    </TreeViewItem.Header>
+                                </TreeViewItem>
+
+                                <TreeViewItem>
+                                    <TreeViewItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <CheckBox Tag="layer_a_2" IsChecked="True"/>
+                                            <TextBlock Text="A.2" Margin="6,0,0,0"/>
+                                        </StackPanel>
+                                    </TreeViewItem.Header>
+                                </TreeViewItem>
+
+                            </TreeViewItem>
+
+                            <!-- another child -->
+                            <TreeViewItem>
+                                <TreeViewItem.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox Tag="layer_b" />
+                                        <TextBlock Text="Layer B" Margin="6,0,0,0"/>
+                                    </StackPanel>
+                                </TreeViewItem.Header>
+
+                                <TreeViewItem>
+                                    <TreeViewItem.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <CheckBox Tag="layer_b_1" />
+                                            <TextBlock Text="B.1" Margin="6,0,0,0"/>
+                                        </StackPanel>
+                                    </TreeViewItem.Header>
+                                </TreeViewItem>
+
+                            </TreeViewItem>
+
+                        </TreeViewItem>
+                    </TreeView>
+                </StackPanel>
+            </ScrollViewer>
+            
+        </Grid>
+
+    </Border>
+</Window>

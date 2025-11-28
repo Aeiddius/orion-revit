@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -54,11 +55,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Commands\FilterPlus\FilterPlusCommand.cs" />
     <Compile Include="Commands\SectionBox\SectionBoxHandler.cs" />
     <Compile Include="Commands\SectionBox\SectionBoxLogic.cs" />
     <Compile Include="Commands\SectionBox\SectionBoxStorage.cs" />
     <Compile Include="Commands\SectionBox\SectionBoxCommands.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\FilterPlus.xaml.cs">
+      <DependentUpon>FilterPlus.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SectionMenu.xaml.cs">
       <DependentUpon>SectionMenu.xaml</DependentUpon>
     </Compile>
@@ -67,6 +72,10 @@
     <None Include="Orion.addin" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\FilterPlus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SectionMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
