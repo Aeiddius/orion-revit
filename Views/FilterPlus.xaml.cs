@@ -19,7 +19,7 @@ namespace Orion.Views
         public UIDocument uidoc { get; }
         public Document doc { get; }
 
-        private static WeakReference<SectionMenu> _instanceRef;
+        private static WeakReference<FilterPlus> _instanceRef;
 
         public FilterPlus(UIDocument uiDoc)
         {
@@ -61,10 +61,10 @@ namespace Orion.Views
             }
 
             // 2) no usable instance found — create one and store weak ref
-            var wnd = new SectionMenu(uiDoc);
+            var wnd = new FilterPlus(uiDoc);
             new WindowInteropHelper(wnd) { Owner = uiApp.MainWindowHandle }; // parent to Revit
             wnd.Show();
-            _instanceRef = new WeakReference<SectionMenu>(wnd);
+            _instanceRef = new WeakReference<FilterPlus>(wnd);
         }
 
 

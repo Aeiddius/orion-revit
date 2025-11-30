@@ -22,3 +22,5 @@ C:\Users\User\Documents\Tagayom Files\programming\c#\Orion\obj\Debug\Views\Filte
 C:\Users\User\Documents\Tagayom Files\programming\c#\Orion\obj\Debug\Views\SectionMenu.baml
 C:\Users\User\Documents\Tagayom Files\programming\c#\Orion\obj\Debug\Orion.g.resources
 C:\Users\User\Documents\Tagayom Files\programming\c#\Orion\obj\Debug\Orion.csproj.CoreCompileInputs.cache
+C:\Programming\revit-extension\orion-revit\obj\Debug\Views\FilterPlus.g.cs
+C:\Programming\revit-extension\orion-revit\obj\Debug\Views\FilterPlus.baml
