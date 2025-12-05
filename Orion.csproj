@@ -56,10 +56,16 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="Commands\FilterPlus\FilterPlusCommand.cs" />
+    <Compile Include="Commands\LevelSectioner\LevelSectionerHandler.cs" />
+    <Compile Include="Commands\LevelSectioner\LevelSectionerLogic.cs" />
     <Compile Include="Commands\SectionBox\SectionBoxHandler.cs" />
     <Compile Include="Commands\SectionBox\SectionBoxLogic.cs" />
     <Compile Include="Commands\SectionBox\SectionBoxStorage.cs" />
     <Compile Include="Commands\SectionBox\SectionBoxCommands.cs" />
+    <Compile Include="Views\LevelSectioner.xaml.cs">
+      <DependentUpon>LevelSectioner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Commands\LevelSectioner\LevelSectionerCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\FilterPlus.xaml.cs">
       <DependentUpon>FilterPlus.xaml</DependentUpon>
@@ -72,6 +78,10 @@
     <None Include="Orion.addin" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\LevelSectioner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\FilterPlus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

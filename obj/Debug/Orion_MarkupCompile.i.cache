@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 
-2-489343510
+3-662556280
 
-10103984749
+14-258408434
 14735473730
-Views\FilterPlus.xaml;Views\SectionMenu.xaml;
+Views\LevelSectioner.xaml;Views\FilterPlus.xaml;Views\SectionMenu.xaml;
 
-True
+False
 

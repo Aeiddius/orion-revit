@@ -27,9 +27,9 @@ namespace Orion
 
                 // Section Panel
                 RibbonPanel sectionPanel = application.CreateRibbonPanel(tabName, "Section Panel");
-                SplitButtonData sbd = new SplitButtonData("OrionSectionBoxSplitButton", "Section Box Tools");
+                SplitButtonData sbd = new("OrionSectionBoxSplitButton", "Section Box Tools");
 
-                ButtonSpec buttonSetSB = new ButtonSpec(
+                ButtonSpec buttonSetSB = new(
                     id: "cmdSetSectionBox",
                     title: "Section",
                     className: "Orion.Commands.SectionBox.SetSectionBoxCommand",
@@ -38,7 +38,7 @@ namespace Orion
                     tooltip: "Creates a section box from the selected elements."
                     );
 
-                ButtonSpec buttonMenuSB = new ButtonSpec(
+                ButtonSpec buttonMenuSB = new(
                     id: "cmdMenuSectionBox",
                     title: "Menu",
                     className: "Orion.Commands.SectionBox.MenuSectionBoxCommand",
@@ -47,7 +47,7 @@ namespace Orion
                     tooltip: "Opens the Detailed Menu for Section Box."
                     );
 
-                ButtonSpec buttonGrowSB = new ButtonSpec(
+                ButtonSpec buttonGrowSB = new(
                     id: "cmdGrowSectionBox",
                     title: "Grow",
                     className: "Orion.Commands.SectionBox.GrowSectionBoxCommand",
@@ -56,7 +56,7 @@ namespace Orion
                     tooltip: "Grows the section box by a specified amount."
                     );
 
-                ButtonSpec buttonShrinkSB = new ButtonSpec(
+                ButtonSpec buttonShrinkSB = new(
                     id: "cmdShrinkSectionBox",
                     title: "Shrink",
                     className: "Orion.Commands.SectionBox.ShrinkSectionBoxCommand",
@@ -65,7 +65,7 @@ namespace Orion
                     tooltip: "Grows the section box by a specified amount."
                 );
 
-                ButtonSpec buttonToggleSB = new ButtonSpec(
+                ButtonSpec buttonToggleSB = new(
                     id: "cmdToggleSectionBox",
                     title: "Toggle",
                     className: "Orion.Commands.SectionBox.ToggleSectionBoxCommand",
@@ -75,12 +75,12 @@ namespace Orion
                 );
 
 
-                CreatePushButton(sectionPanel, new[] { buttonMenuSB, buttonSetSB });
-                CreateStackedButtons(sectionPanel, new[] { buttonToggleSB, buttonGrowSB, buttonShrinkSB,  });
+                CreatePushButton(sectionPanel, [buttonMenuSB, buttonSetSB]);
+                CreateStackedButtons(sectionPanel, [buttonToggleSB, buttonGrowSB, buttonShrinkSB,]);
 
                 // Filter
                 RibbonPanel filterPanel = application.CreateRibbonPanel(tabName, "Filter Panel");
-                ButtonSpec buttonFilter = new ButtonSpec(
+                ButtonSpec buttonFilter = new(
                     id: "cmdFilterAdvanced",
                     title: "Filter+",
                     className: "Orion.Commands.FilterPlus.FilterPlusCommand",
@@ -89,7 +89,20 @@ namespace Orion
                     tooltip: "Advanced Filter mode"
                 );
 
-                CreatePushButton(filterPanel, new[] { buttonFilter });
+                CreatePushButton(filterPanel, [buttonFilter]);
+
+                // 3D Generator
+                RibbonPanel levelSectionerPanel = application.CreateRibbonPanel(tabName, "Level Sectioner");
+                ButtonSpec buttonLevelSectioner = new(
+                    id: "cmdLevelSectioner",
+                    title: "Generator",
+                    className: "Orion.Commands.LevelSectioner.MenuSectionBoxCommand",
+                    icon16: "Orion.Resource.SectionBox.SetSectionIcon-16x16.ico",
+                    icon32: "Orion.Resource.SectionBox.SetSectionIcon-32x32.ico",
+                    tooltip: "Generate 3D views of Multiple Levels"
+                );
+
+                CreatePushButton(levelSectionerPanel, [buttonLevelSectioner]);
 
                 return Result.Succeeded;
             }
@@ -103,7 +116,7 @@ namespace Orion
 
         private BitmapImage LoadImage(string path)
         {
-            Uri uriImage = new Uri(path);
+            Uri uriImage = new(path);
             return new BitmapImage(uriImage);
 
         }
