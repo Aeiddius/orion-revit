@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace Orion.Commands.LevelSectioner
 {
@@ -21,31 +22,52 @@ namespace Orion.Commands.LevelSectioner
             string commandName)
         {
 
-            View3D view3D = doc.GetElement(new ElementId(3378071)) as View3D;
+            List<Level> levels = new FilteredElementCollector(doc)
+                .OfClass(typeof(Level))
+                .OrderBy(level => (level as Level).Elevation)
+                .Cast<Level>()
+                .ToList();
 
-            Level level_5 = doc.GetElement(new ElementId(1363877)) as Level;
-            Level level_6 = doc.GetElement(new ElementId(1365008)) as Level;
+            int fromIndex = levels.FindIndex(l => l.Id == fromLevel.Id);
+            int toIndex = levels.FindIndex(l => l.Id == toLevel.Id);
 
-            double minZ = level_5.Elevation;
-            double maxZ = level_6.Elevation;
+            // Check view 3d family type
+            ViewFamilyType viewType = new FilteredElementCollector(doc)
+                .OfClass(typeof(ViewFamilyType))
+                .Cast<ViewFamilyType>()
+                .FirstOrDefault(x => x.ViewFamily == ViewFamily.ThreeDimensional);
 
-            double extentsX = 500.0;
-            double extentsY = 500.0;
-
-            BoundingBoxXYZ bbox = new BoundingBoxXYZ()
+            for (int i = fromIndex; i < toIndex; i++)
             {
-                Min = new XYZ(-extentsX, -extentsY, minZ),
-                Max = new XYZ(extentsX, extentsY, maxZ)
-            };
+                Level bottomLevel = levels[i];
+                Level topLevel = levels[i + 1];
 
-            bbox.Transform = Transform.Identity;
+                // Set bbox
+                BoundingBoxXYZ bbox = new()
+                {
+                    Min = new XYZ(-xNeg, -yNeg, bottomLevel.Elevation),
+                    Max = new XYZ(xPos, yPos, topLevel.Elevation),
+                    Transform = Transform.Identity
+                };
 
-            using (Transaction tx = new Transaction(doc, "new box"))
-            {
-                tx.Start();
-                view3D.SetSectionBox(bbox);
-                tx.Commit();
+                // Commit to Revit
+                using (Transaction tx = new Transaction(doc, "new box"))
+                {
+                    tx.Start();
+                    // Create new view 3d
+                    View3D newView = View3D.CreateIsometric(doc, viewType.Id);
+
+                    // Set name
+                    newView.Name = $"SECTIONED - {bottomLevel.Name} 3D Section View ";
+
+                    // Set box
+                    newView.SetSectionBox(bbox);
+                    tx.Commit();
+                }
+
             }
+
+
 
             return Result.Succeeded;
         }
@@ -58,6 +80,28 @@ namespace Orion.Commands.LevelSectioner
             double yNeg,
             string commandName)
         {
+            View3D view3D = doc.ActiveView as View3D;
+
+
+            BoundingBoxXYZ viewBbox = view3D.GetSectionBox();
+
+
+
+            BoundingBoxXYZ bbox = new BoundingBoxXYZ()
+            {
+                Min = new XYZ(-xNeg, -yNeg, viewBbox.Min.Z),
+                Max = new XYZ(xPos, yPos, viewBbox.Max.Z)
+            };
+
+
+            using (Transaction tx = new Transaction(doc, "new box"))
+            {
+                tx.Start();
+                view3D.IsSectionBoxActive = true;
+                view3D.SetSectionBox(bbox);
+                tx.Commit();
+            }
+
             return Result.Succeeded;
         }
 

@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Orion.addin" />
+    <None Include="readme.md" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\LevelSectioner.xaml">
@@ -106,6 +107,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Resource\SectionBox\FilterPlusIcon-16x16.ico" />
     <EmbeddedResource Include="Resource\SectionBox\FilterPlusIcon-32x32.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resource\Inno\installation_script.iss" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

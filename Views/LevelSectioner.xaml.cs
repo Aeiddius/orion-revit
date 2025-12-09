@@ -24,10 +24,13 @@ namespace Orion.Views
         private static WeakReference<LevelSectioner> _instanceRef;
 
         private ExternalEvent _sectionerEvent;
-        private LevelSectionerHandler _sectionerHandler;
+        private LevelSectionerHandler _sectionerManualHandler;
 
         private ExternalEvent _testerEvent;
         private LevelSectionerTestHandler _testerHandler;
+
+        private XYZ copiedMin;
+        private XYZ copiedMax;
 
         public LevelSectioner(UIDocument uiDoc)
         {
@@ -35,8 +38,8 @@ namespace Orion.Views
             doc = uiDoc.Document;
             InitializeComponent();
 
-            _sectionerHandler = new LevelSectionerHandler();
-            _sectionerEvent = ExternalEvent.Create(_sectionerHandler);
+            _sectionerManualHandler = new LevelSectionerHandler();
+            _sectionerEvent = ExternalEvent.Create(_sectionerManualHandler);
 
             _testerHandler = new LevelSectionerTestHandler();
             _testerEvent = ExternalEvent.Create(_testerHandler);
@@ -49,6 +52,7 @@ namespace Orion.Views
         {
             IEnumerable<Level> levels = new FilteredElementCollector(doc)
                 .OfClass(typeof(Level))
+                .OrderBy(level => (level as Level).Elevation)
                 .Cast<Level>();
 
             List<ComboItem> comboboxLevelItems = levels
@@ -105,37 +109,68 @@ namespace Orion.Views
             public ElementId id { get; set; }
         }
 
-        private void Generate(object sender, RoutedEventArgs e)
+        private void GenerateManual(object sender, RoutedEventArgs e)
         {
-            Level fromlevel = (FromLevels.SelectedItem as ComboItem).elem as Level;
-            Level toLevel = (ToLevels.SelectedItem as ComboItem).elem as Level;
-
-            double xPos = double.Parse(XPos.Text);
-            double xNeg = double.Parse(XNeg.Text);
-            double yPos = double.Parse(YPos.Text);
-            double yNeg = double.Parse(YNeg.Text);
-
-            _sectionerHandler.fromLevel = fromlevel;
-            _sectionerHandler.toLevel = toLevel;
-            _sectionerHandler.xNeg = xNeg;
-            _sectionerHandler.xPos = xPos;
-            _sectionerHandler.yNeg = yNeg;
-            _sectionerHandler.xPos = xPos;
+            _sectionerManualHandler.fromLevel = (FromLevels.SelectedItem as ComboItem).elem as Level;
+            _sectionerManualHandler.toLevel = (ToLevels.SelectedItem as ComboItem).elem as Level;
+            _sectionerManualHandler.xPos = ParseOrDefault(XPos.Text);
+            _sectionerManualHandler.xNeg = ParseOrDefault(XNeg.Text);
+            _sectionerManualHandler.yPos = ParseOrDefault(YPos.Text);
+            _sectionerManualHandler.yNeg = ParseOrDefault(YNeg.Text);
             _sectionerEvent.Raise();
+        }
+
+        private void GenerateCopy(object sender, RoutedEventArgs e)
+        {
+            if (copiedMin == null || copiedMax == null) {
+                TaskDialog.Show("Report", "Click copy to copy current 3d active view XY Section box");
+                return;
+            }
+            
+            _sectionerManualHandler.fromLevel = (FromLevels.SelectedItem as ComboItem).elem as Level;
+            _sectionerManualHandler.toLevel = (ToLevels.SelectedItem as ComboItem).elem as Level;
+            _sectionerManualHandler.xPos = copiedMax.X;
+            _sectionerManualHandler.xNeg = -copiedMin.X;
+            _sectionerManualHandler.yPos = copiedMax.Y;
+            _sectionerManualHandler.yNeg = -copiedMin.Y;
+            _sectionerEvent.Raise();
+        }
+
+        private void CopyBox(object sender, RoutedEventArgs e)
+        {
+            if (doc.ActiveView is not View3D)
+            {
+                TaskDialog.Show("Warning", "Please set current active view to a 3d View");
+                return;
+            }
+            View3D view3d = doc.ActiveView as View3D;
+
+            BoundingBoxXYZ bbox = view3d.GetSectionBox();
+            copiedMin = bbox.Min;
+            copiedMax = bbox.Max;
+
+            CopiedMinLabel.Content = $"Min: ({Math.Round(copiedMin.X, 2)}, {Math.Round(copiedMin.Y, 2)})";
+            CopiedMaxLabel.Content = $"Min: ({Math.Round(copiedMax.X, 2)}, {Math.Round(copiedMax.Y, 2)})";
         }
 
         private void TestBox(object sender, RoutedEventArgs e)
         {
-            double xPos = double.Parse(XPos.Text);
-            double xNeg = double.Parse(XNeg.Text);
-            double yPos = double.Parse(YPos.Text);
-            double yNeg = double.Parse(YNeg.Text);
+            if (doc.ActiveView is not View3D view3d)
+            {
+                TaskDialog.Show("Warning", "Please set current active view to a 3d View");
+                return;
+            }
 
-            _testerHandler.xNeg = xNeg;
-            _testerHandler.xPos = xPos;
-            _testerHandler.yNeg = yNeg;
-            _testerHandler.xPos = xPos;
+            _testerHandler.xPos = ParseOrDefault(XPos.Text);
+            _testerHandler.xNeg = ParseOrDefault(XNeg.Text);
+            _testerHandler.yPos = ParseOrDefault(YPos.Text);
+            _testerHandler.yNeg = ParseOrDefault(YNeg.Text);
             _testerEvent.Raise();
+        }
+
+        private double ParseOrDefault(string text, double defaultValue = 0.0)
+        {
+            return double.TryParse(text, out double result) ? result : defaultValue;
         }
 
         public void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
