@@ -76,7 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Orion.addin" />
-    <None Include="readme.md" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\LevelSectioner.xaml">

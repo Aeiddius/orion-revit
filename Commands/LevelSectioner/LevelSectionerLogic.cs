@@ -21,10 +21,12 @@ namespace Orion.Commands.LevelSectioner
             double yNeg,
             string commandName)
         {
+            List<int> except = [1365138];
 
             List<Level> levels = new FilteredElementCollector(doc)
                 .OfClass(typeof(Level))
                 .OrderBy(level => (level as Level).Elevation)
+                .Where(level => !except.Contains(level.Id.IntegerValue))
                 .Cast<Level>()
                 .ToList();
 
@@ -46,7 +48,7 @@ namespace Orion.Commands.LevelSectioner
                 BoundingBoxXYZ bbox = new()
                 {
                     Min = new XYZ(-xNeg, -yNeg, bottomLevel.Elevation),
-                    Max = new XYZ(xPos, yPos, topLevel.Elevation),
+                    Max = new XYZ(xPos, yPos, topLevel.Elevation+1),
                     Transform = Transform.Identity
                 };
 
